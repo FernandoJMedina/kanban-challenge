@@ -124,7 +124,7 @@ function ColumnContainer({
         rounded-full
         "
           >
-            0
+            {tasks.length}
           </div>
           {!editMode && column.title}
           {editMode && (
@@ -133,9 +133,7 @@ function ColumnContainer({
               value={column.title}
               onChange={(e) => updateColumn(column.id, e.target.value)}
               autoFocus
-              onBlur={() => {
-                setEditMode(false);
-              }}
+              onBlur={() => setEditMode(false)}
               onKeyDown={(e) => {
                 if (e.key !== "Enter") return;
                 setEditMode(false);
@@ -144,9 +142,7 @@ function ColumnContainer({
           )}
         </div>
         <button
-          onClick={() => {
-            deleteColumn(column.id);
-          }}
+          onClick={() => deleteColumn(column.id)}
           className="
         stroke-gray-500
         hover:stroke-white
@@ -176,9 +172,7 @@ function ColumnContainer({
       {/* Column footer */}
       <button
         className="flex gap-2 items-center border-columnBackgroundColor border-2 rounded-md p-4 border-x-columnBackgroundColor hover:bg-mainBackgroundColor hover:text-rose-500 active:bg-black"
-        onClick={() => {
-          createTask(column.id);
-        }}
+        onClick={() => createTask(column.id)}
       >
         <PlusIcon />
         Add task
